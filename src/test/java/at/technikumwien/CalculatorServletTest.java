@@ -39,17 +39,16 @@ public class CalculatorServletTest {
     }
 
     @Test (expected = NumberFormatException.class)
-    public void testNoParameters() throws IOException, SAXException {
+    public void testOnlyFirstParameter() throws IOException, SAXException {
         WebRequest request = new GetMethodWebRequest("http://test.meterware.com/calculator");
+        request.setParameter("operand1", "a");
         WebResponse response = client.getResponse(request);
     }
 
     @Test (expected = NumberFormatException.class)
-    public void testWrongInput() throws IOException, SAXException {
+    public void testOnlySecondParameter() throws IOException, SAXException {
         WebRequest request = new GetMethodWebRequest("http://test.meterware.com/calculator");
-        request.setParameter("operand1", "a");
         request.setParameter("operand2", "b");
-
         WebResponse response = client.getResponse(request);
     }
 
